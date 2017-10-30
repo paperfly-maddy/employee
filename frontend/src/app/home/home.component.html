@@ -1,0 +1,87 @@
+<div>
+<button id="addNew" (click)="clicked()" class="btn btn-success"> Click Here to Add New Employee</button>
+<br />
+</div>
+<div class="panel panel-default" *ngIf="show">
+  <div class="panel-heading">Employee Entry Form : You can add an employee's detail information into this EMS Apps.</div>
+  <div class="panel-body">
+  <form class="form-horizontal" (submit)="addEmployee()">
+	<div class="form-group">
+    <label for="emp_empid" class="col-sm-2 control-label">Employee ID : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.empid" name="empid" >
+    </div>
+	</div>	
+  <div class="form-group">
+    <label for="emp_name" class="col-sm-2 control-label">Employee's Name : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.name" name="name" required>
+    </div>
+	</div>
+	<div class="form-group">
+    <label for="emp_sirname" class="col-sm-2 control-label">Employee's SirName : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.sirname" name="sirname" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="position" class="col-sm-2 control-label">Job Level : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.position" name="position">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="department" class="col-sm-2 control-label">Department Name : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.department" name="department">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="salary" class="col-sm-2 control-label">Employee's Salary : </label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [(ngModel)]="model.salary" name="salary">
+    </div>
+  </div>
+  
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <button type="submit" class="btn btn-success">Save</button>
+       <a class="btn btn-info" (click)="goBack()">Cancel</a>
+    </div>
+   
+  </div>
+</form>
+
+  </div>
+</div>
+
+
+<table class="table table-bordered">
+		  <thead>
+			<tr>
+				<td>Emp ID</td>
+				<td>Name</td>
+				<td>Sirname</td>
+			  <td>Level</td>
+        <td>Department</td>
+        <td>Salary</td>
+			  <td width="275" align="center">Action</td>
+			</tr>
+		  </thead>
+		  <tbody>
+			 <tr  *ngFor="let employee of employees">
+				<td>{{employee.empid}}</td>
+				<td>{{employee.name}}</td>
+				<td>{{employee.sirname}}</td>
+				<td>{{employee.position}}</td>
+        <td>{{employee.department}}</td>
+        <td>{{employee.salary}}</td>
+				<td width="275"> 
+					<a class="btn btn-info" routerLink="/show/{{employee._id}}">Detail</a> 
+					<a class="btn btn-success"  routerLink="/edit/{{employee._id}}">Edit</a>
+					<a class="btn btn-danger" (click)="deleteEmployee(employee._id)">Delete</a>
+				</td>
+			 </tr>
+		  </tbody>
+		</table>
